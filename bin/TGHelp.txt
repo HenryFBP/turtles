@@ -1,0 +1,2432 @@
+<category name="DataCmd">
+   global local localmake make setitem
+</category>
+
+<category name="DataCons">
+   array arraytolist (arraytolist) fput list listtoarray lput
+   sentence word
+</category>
+
+<category name="DataPred">
+   array? empty? list? member? word?
+</category>
+
+<category name="Directive,Directives" key="commandcenter">
+   audiofiles bye cd ctrl-q ctrl-t dir edit editor emacs
+   end help jlogofiles loadcode ls pictfiles printglobals
+   printprocs printstack printtext pwd talkto to trace
+   untrace version winedit
+</category>
+
+<category name="Emacs" key="sEmacs">
+   abortcmd backchar backcmd backproc backword backspacekey
+   bol bottom copyregion delchar delword emacs endkey eol
+   exchcursormark f1help findfile fwdchar fwdcmd fwdproc
+   fwdword help homekey insertfile insertparens killline
+   killregion nextline openline prevline recenter revsrch
+   save scrolldn scrollup search selectAll setmark top undo
+   writefile yank
+</category>
+
+<category name="FloCtl">
+   ask if ifelse forever output stop repcount repeat tell
+   wait
+</category>
+
+<category name="GrafCmd" key="graph">
+   arc back cleargraphics fill forward hideturtle home
+   label left pendown penup right setbackground setheading
+   setlabelfont setlabelheight setlinecap setpencolor
+   setpenpattern setpensize setpos setshape setx setxy
+   sety showturtle shown? stamp
+</category>
+
+<category name="GrafOpr" key="graph">
+   background canvasheight canvaswidth colorunder colorsunder
+   getpixels heading labelheight labelwidth linecap pencolor
+   pendown? penpattern pensize pos setpixels shapeheight
+   shapepixels shapewidth towards xcor
+   ycor
+</category>
+
+<category name="LogOpr">
+    and or not
+</category>
+
+<category name="NumOpr">
+    abs arctan ashift bitand bitnot bitor bitxor ceil
+    cos difference floor int log lshift minus norounding
+    pi power product quotient random remainder round
+    setrounding sin sqrt sum tan pow
+</category>
+
+<category name="NumPred">
+   equal? greater? greaterequal? less? lessequal? number?
+</category>
+
+<category name="Other">
+   ascii char count evaluate lowercase newturtle playclip
+   playnote run tg throttle time uppercase who
+</category>
+
+<category name="Selector">
+   butfirst butlast first item last thing
+</category>
+
+<category name="UserIO">
+   beep cleartext keypressed keyreleased keytyped loadclip
+   loadpicture loadshape mouseclicked mousemoved mousepos
+   mousex mousey print println readlist readword
+   savepicture show
+</category>
+
+<category name="WinEdit"  key="directive,editor">
+   backspacekey copy cut deletekey downarrow endkey
+   f1help find gotoline homekey leftarrow newfile
+   openfile paste rightarrow scrollDn scrollUp
+   selectAll undo uparrow winedit
+</category>
+
+
+<item name="abortcmd,ctrl-g">
+Ctrl-g (in sEmacs)
+
+Abort current command, e.g., text region selection or
+a command involving promptbar intput.
+</item>
+
+<item name="abs" key="math">
+ABS number
+
+Outputs the absolute value of number.
+</item>
+
+<item name="and">
+AND trueFalse1 trueFalse2
+
+Outputs true if trueFalse1 AND trueFalse2 are true,
+otherwise it outputs false.
+
+Example: IF AND (EQUAL? XCOR 0) (EQUAL? YCOR 0) [PRINTLN "Home]
+</item>
+
+<item name="arc" key="turtl">
+ARC angle radius
+
+Draws an arc of a circle, with the turtle at the center,
+with the specified radius, starting at the turtle's heading
+and extending clockwise through the specified angle. The
+turtle does not move.
+
+See also: BACK, FILL, FORWARD
+</item>
+
+
+<item name="arctan" key="math">
+ARCTAN number
+(ARCTAN x y)
+
+Outputs the arc tangent of number in degrees.
+
+ARCTAN with two inputs (surrounded with parenthesis)
+outputs the arctangent of y/x, if x is nonzero, or
+90 or -90 depending on the sign of y, if x is zero.
+</item>
+
+<item name="array">
+ARRAY size
+
+Outputs an array of size members, each of which initially
+contains the value null.  Size must be a positive integer.
+
+Example: MAKE "ary ARRAY 5
+
+See also: ARRAY?, ARRAYTOLIST, ITEM, LISTTOARRAY, SETITEM
+</item>
+
+<item name="array?,arrayp">
+ARRAY? thing
+ARRAYP thing
+
+Outputs true if the input thing is an array, else outputs false.
+</item>
+
+<item name="arraytolist">
+ARRAYTOLIST array
+
+Outputs a list whose members are the members of the input array.
+</item>
+
+<item name="(arraytolist)">
+(ARRAYTOLIST array beginIndex count)
+
+Outputs a list whose members are the members of the input array,
+starting with the member at beginIndex and continuing through and
+including member at beginIndex+(count-1).
+</item>
+
+<item name="ascii" key="str,text">
+ASCII character
+
+Outputs the integer (between 0 and 127) that represents the
+character in the ASCII code.
+
+Example: ASCII "A (outputs 65)
+
+See also: CHAR, LOWERCASE, UPPERCASE
+</item>
+
+<item name="ashift" key="math,shift">
+ASHIFT num1 num2
+
+Outputs num1 arithmetic-shifted to the left by num2 bits. If
+num2 is negative, the shift is to the right with sign extension.
+The inputs must be integers.
+
+See also: BITAND, BITNOT, BITOR, BITXOR, LSHIFT
+</item>
+
+<item name="ask" key="turtl">
+ASK turtleName [ expression ]
+
+The turtle named turtleName is passed an expression (an operation
+and its inputs if any) which it interprets and outputs the result
+to the asking turtle.
+
+Example: ASK "otherTurtle [POS]   ; get location of otherTurtle
+
+See also: NEWTURTLE, TALKTO, TELL, WHO
+</item>
+
+<item name="audiofiles" key="commandcenter,input,io,load">
+AUDIOFILES
+
+Prints a list of all the .wav files in the current directory or
+on the Internet site TG came from if it's running as an applet.
+
+See also: CD, DIR, LOADCLIP, LS, PWD
+</item>
+
+<item name="back,bk" key="turtl">
+BACK number  (Abreviation: BK)
+
+Moves the turtle backward, i.e., exactly opposite to the direction
+that it's facing, by the specified number of turtle steps.
+
+See also: ARC, FILL, FORWARD
+</item>
+
+<item name="background,bg" key="color">
+BACKGROUND
+BG
+
+Outputs the color number for the background of the graphics canvas.
+Numbers in the range of 0&nbsp;-&nbsp;31 represent colors in the following
+table. Other numbers are treated as four concatenated 8-bit (0-255)
+values: alpha, red, green, and blue (in that order).
+
+
+Number Color        Number Color        Number Color
+------ ----------   ------ ----------   ------ ---------
+   0   black          11   aqua           22   gold
+   1   blue           12   salmon         23   lightgray
+   2   green          13   violet         24   peru
+   3   cyan           14   orange         25   wheat
+   4   red            15   grey           26   palegreen
+   5   magenta        16   navy           27   lightblue
+   6   yellow         17   skyblue        28   khaki
+   7   white          18   lime           29   pink
+   8   brown          19   steelblue      30   lawngreen
+   9   light brown    20   chocolate      31   olive
+  10   forest         21   purple
+
+See also: SETBACKGROUND
+</item>
+
+<item name="backchar,ctrl-b">
+Ctrl-b (in sEmacs)
+[LEFT ARROW]
+
+Moves the cursor back one character.
+</item>
+
+<item name="backcmd">
+Esc a
+
+Moves the cursor back to the start of the
+previous Logo command.
+</item>
+
+<item name="backproc">
+Esc [
+
+Moves the cursor back to the start of the
+previous procedure definition, its title line.
+</item>
+
+<item name="backspacekey">
+[BACKSPACE]
+
+Deletes the character to the left of the cursor.
+</item>
+
+<item name="backword">
+Esc b
+
+Moves the cursor back one word, to the start of
+the previous group of non-whitespace characters.
+</item>
+
+<item name="beep" key="audio,io,sound">
+BEEP
+
+Plays a beep-like signal on the computer's speakers. If the
+program should pause while the beep plays, follow BEEP with
+a WAIT command.
+
+See also: PLAYNOTE, WAIT
+</item>
+
+<item name="bitand" key="math">
+BITAND num1 num2
+
+Outputs the bitwise AND of its inputs, which must be integers.
+
+See also: ASHIFT, BITNOT, BITOR, BITXOR, LSHIFT
+</item>
+
+<item name="bitnot" key="math">
+BITNOT number
+
+Outputs the bitwise NOT of its input, which must be an integer.
+
+See also: ASHIFT, BITAND, BITOR, BITXOR, LSHIFT
+</item>
+
+<item name="bitor" key="math">
+BITOR num1 num2
+
+Outputs the bitwise OR of its inputs, which must be integers.
+
+See also: ASHIFT, BITAND, BITNOT, BITXOR, LSHIFT
+</item>
+
+<item name="bitxor" key="math">
+BITXOR num1 num2
+
+Outputs the bitwise exclusive OR of its inputs, which must be
+integers.
+
+See also: ASHIFT, BITAND, BITNOT, BITOR, LSHIFT
+</item>
+
+<item name="bol,ctrl-a">
+Ctrl-a (in sEmacs)
+[HOME]
+
+Moves the cursor to the beginning of the current line.
+</item>
+
+<item name="bottom">
+Esc &gt;
+
+Move the cursor to the last line in the Editor.
+</item>
+
+<item name="butfirst,bf">
+BUTFIRST word-or-list
+BF word-or-list
+
+If the input is a word, all characters except its first are output.
+If the input is a list, all members except the first are output.
+</item>
+
+<item name="butlast,bl">
+BUTLAST word-or-list
+BL word-or-list
+
+If the input is a word, all characters except its last are output.
+If the input is a list, all members except the last one are output.
+</item>
+
+<item name="bye" key="commandcenter">
+BYE
+
+Terminates the TG application, ignored when TG is running as an
+applet.
+</item>
+
+<item name="canvasheight" key="pix">
+CANVASHEIGHT
+
+Outputs the height of the graphics window in turtle steps.
+</item>
+
+<item name="canvaswidth" key="pix">
+CANVASWIDTH
+
+Outputs the width of the graphics window in turtle steps.
+</item>
+
+<item name="ceil" key="math">
+CEIL number
+
+Outputs the smallest integer (closest to negative infinity) that is
+not less than number.
+
+Example: CEIL 44.223 (outputs 45)
+
+See also: FLOOR, INT, ROUND
+</item>
+ 
+<item name="cd" key="commandcenter">
+CD
+
+Change the current working directory. The input must be either an
+absolute path or a path relative to the current working directory.
+In the case of a relative path, ".." represents a parent directory.
+
+CD is not available when TG is running as an applet.
+
+See also: AUDIOFILES, DIR, JLOGOFILES, LS, PICTFILES, PWD, SAVEPICTURE
+</item>
+
+<item name="char" key="str,text">
+CHAR number
+
+Outputs a single character word that is the ASCII code corresponding
+to the input (an integer between 0 and 127).
+
+Example: CHAR 65 (outputs "A)
+
+See also: ASCII, LOWERCASE, UPPERCASE
+</item>
+  
+<item name="cleargraphics,clean,cg,cs" key="clear">
+CLEARGRAPHICS
+CLEAN
+CG
+CS
+
+Erases everything that the turtle has drawn in the graphics
+window.  The turtle's state (position, heading, pen color,
+etc.) is not changed.
+</item>
+
+<item name="cleartext,ct" key="clear,str,text">
+CLEARTEXT
+CT
+
+Erases all of the text in the CommandCenter.
+</item>
+
+<item name="colorunder" key="color,pen,turtl">
+COLORUNDER
+
+The color under the center of the turtle, the tip of the pen,
+is output.
+
+Example: IF EQUAL? COLORUNDER 0 [RIGHT 180]
+</item>
+
+<item name="colorsunder" key="color,turtl">
+COLORSUNDER
+
+Outputs a list of the colors under the turtle's image, one
+member for each unique color.
+</item>
+
+<item name="copy,ctrl-c">
+Ctrl-c
+
+Copies highlighted text (the current selection) to a
+temporary holding area.
+</item>
+
+<item name="copyregion">
+Esc w
+
+Copies the selected region of text to a temporary
+holding area.
+</item>
+
+<item name="cos" key="math">
+COS number
+
+Outputs the trigonometric cosine of number which is in degrees.
+</item>
+
+<item name="count">
+COUNT word-or-list-or-array
+
+If the input is a word, the number of characters in it is output.
+If the input is a list, the number of words in it is output.
+
+Example: COUNT [one two three four] (outputs 4)
+</item>
+
+<item name="cut,ctrl-x">
+Ctrl-x (in WinEdit)
+
+Deletes highlighted text (the current selection) placing it in
+a temporary holding area.
+</item>
+
+<item name="delchar,Ctrl-d">
+[DELETE]
+Ctrl-d (in sEmacs)
+
+Deletes the character to the right of the cursor.
+</item>
+
+<item name="killline,ctrl-k">
+Ctrl-k
+
+Deletes all characters on the current line to the right of
+the cursor unless the cursor is at the end of the line.
+In this case, the following line is joined with the current.
+</item>
+
+<item name="deletekey">
+[DELETE]
+
+Deletes the character to the right of the cursor.
+</item>
+
+<item name="delword">
+Esc d
+
+Deletes from the cursor forward to the end of a word, to
+the start of the next whitespace.
+</item>
+
+<item name="difference" key="math">
+DIFFERENCE number1 number2
+
+Outputs the result of subtracting number2 from number1.
+
+Example: DIFFERENCE 15 7 (outputs 8)
+</item>
+
+<item name="dir" key="commandcenter,input,io,load">
+DIR pattern
+
+Prints the names of files in the current directory.
+Without a pattern input, all file names are printed.
+With a pattern input, all files that have names which
+match the pattern are printed. Patterns can consist of
+characters and the wildcard '*' (matching any number
+of any characters).
+
+Example: DIR draw*.jlogo
+
+See also: AUDIOFILES, CD, JLOGOFILES, LS, PICTFILES, PWD
+</item>
+
+<item name="downarrow">
+[DOWN ARROW]
+
+Moves the cursor down to the next line.
+</item>
+
+<item name="edit,editor" key="directive">
+If no editor window is open in TG, open one. Transfer
+keyboard focus to the editor window, optionally loading
+a named file.
+
+Example: edit myProgram.jlogo
+</item>
+
+<item name="emacs">
+TG's subset of Emacs commands are:
+
+  abortCmd      backChar        backCmd       backProc
+  backWord      backspaceKey    bOL           bottom
+  copyRegion    delChar         deleteKey     delWord
+  downArrow     endKey          eOL           exchCursorMark
+  f1Help        findFile        fwdChar       fwdCmd
+  fwdProc       fwdWord         help          homeKey
+  insertFile    insertParens    killLine      killRegion
+  leftArrow     nextLine        openLine      prevLine
+  recenter      revSrch         rightArrow    save
+  scrollDn      scrollUp        search        selectAll
+  setMark       top             undo          upArrow
+  writeFile     yank
+
+See also: WinEdit
+</item>
+
+<item name="empty?,emptyp">
+EMPTY? value
+EMPTYP value
+
+Outputs true if its input is a word that has no characters in it,
+otherwise false.
+
+Outputs true if its input is a list that has no members in it,
+otherwise false.
+
+Outputs true if its input is a variable or array member with the
+value null, otherwise false.
+
+Examples: EMPTY? "     (outputs "true)
+          EMPTY? []    (outputs "true)
+          EMPTY? [a b] (outputs "false)
+</item>
+
+<item name="end" key="directive">
+END
+
+Completes the definition of a procedure.
+</item>
+
+<item name="endkey">
+[END]
+
+Moves the cursor to the end of the current line.
+</item>
+
+<item name="eol,ctrl-e">
+[END]
+Ctrl-e (in sEmacs)
+
+Moves the cursor to the end of the current line.
+</item>
+
+<item name="equal?,equalp">
+EQUAL? value1 value2
+EQUALP value1 value2
+
+If value1 is equal to value2, true is output; otherwise false is output.
+
+Examples: EQUAL? "zero 0  (outputs "false)
+          EQUAL? "123 123 (outputs "true)
+</item>
+
+<item name="evaluate,eval">
+EVALUATE operator
+EVAL operator
+
+The input operation, which must be a word or list, is performed and
+its output is the output of EVALUATE. This provides a mechanism for
+a program to dynamically construct an operation.
+
+Supports a variable number of inputs with surrounding parenthesis,
+e.g.,  EVALUATE [product :num 3.14159]  can also be expressed as 
+       (EVALUATE "product :num 3.14159) 
+</item>
+
+<item name="exchcursormark">
+Ctrl-x Ctrl-x
+
+Exchange the current locations of the cursor and mark.
+</item>
+
+<item name="f1help">
+[F1]
+
+Print context-dependent help. When the CommandCenter is active, an
+overview of TG is displayed. Whe the Editor is active, a list of
+available commands is displayed.
+</item>
+
+<item name="fill" key="color,pix,turtl">
+FILL
+
+Whatever color is under the turtle is changed to the turtle's color,
+and this process is repeated in an outward manner for all pixels that
+are neighbors and match the original color.
+
+See also: ARC, BACK, FORWARD
+</item>
+
+<item name="find,ctrl-f">
+Ctrl-f (in WinEdit)
+
+Find a sequence of characters. A prompt bar pops up
+for entering the desired sequence of characters.
+An [Esc] aborts the find operation.
+</item>
+
+<item name="findfile">
+Ctrl-x Ctrl-f
+
+The Editor prompts for the name of the file that is to be opened,
+replacing the current contents. If unsaved changes currently
+exist, you will be prompted to save them.
+</item>
+
+<item name="first">
+FIRST word-or-list
+
+If the input is a word, its first character is output. If the input
+is a list, its first member is output.
+</item>
+
+<item name="floor" key="math">
+FLOOR number
+
+Outputs the largest integer (closest to positive infinity) that is
+not greater than number.
+
+Example: FLOOR 12.875 (outputs 12)
+
+See also: CEIL, INT, ROUND
+</item>
+
+<item name="forever" key="iterat">
+FOREVER [instructions]
+
+Repeats the instructions enclosed in the square brackets forever.
+
+Example: FOREVER [IFELSE NOT :done? [doSomething] [STOP]]
+</item>
+
+<item name="forward,fd" key="turtl">
+FORWARD number
+FD number
+
+Moves the turtle forward, in the direction it is facing, by the
+specified number of turtle steps.
+
+See also: ARC, BACK, FILL
+</item>
+
+<item name="fput">
+FPUT thing list
+
+Outputs a list equal to its second input with one extra member,
+thing, at the beginning.  If the second input is a word, then
+the first input must be a one-letter word, and FPUT is equivalent
+to WORD.
+</item>
+
+<item name="fwdchar,ctrl-f">
+[RIGHT ARROW]
+Ctrl-f (in sEmacs)
+
+Moves the cursor forward one character.
+</item>
+
+<item name="fwdcmd">
+Esc e
+
+Moves the cursor forward to the start of the next
+Logo command.
+</item>
+
+<item name="fwdproc">
+Esc ]
+
+Moves the cursor forward to the start of the next
+procedure definition, its title line.
+</item>
+
+<item name="fwdword">
+Esc f
+
+Moves the cursor forward one word, to the start of the
+next group of non-whitespace characters.
+</item>
+
+<item name="getpixels" key="input,io,pix">
+GETPIXELS rectList
+
+Outputs an array of pixel values specified by the input
+rectangleList, a List of four numbers.  The first number is
+the left-most X edge of the rectangle, the second number is the
+top Y edge of the rectangle, the third number is the width of
+the rectangle, and the fourth number is the height of the
+rectangle, e.g., (sentence :leftX :topY :width :height).
+</item>
+
+<item name="global">
+GLOBAL word-or-list
+
+Declares that a word or all the words in a list are names of
+variables which can be accessed anywhere in the program. The
+variables initially have the value null.
+
+See also: LOCAL, LOCALMAKE
+</item>
+
+<item name="gotoline,ctrl-g">
+Ctrl-g (in WinEdit)
+
+Moves the cursor to the start of a specified line. A promptbar
+pops up for entering the line number. An [Esc] aborts the
+operation.
+</item>
+
+<item name="greater?,greaterp">
+GREATER? value1 value2
+GREATERP value1 value2
+
+If value1 is greater than value2, true is output; otherwise false
+is output.
+
+Examples: GREATER? -2 -7  (outputs "true)
+          GREATER? 27 31  (outputs "false)
+
+See also: EQUAL?, GREATEREQUAL?, LESS?, LESSEQUAL?
+</item>
+
+<item name="greaterequal?,greaterequalp">
+GREATEREQUAL? value1 value2
+GREATEREQUALP value1 value2
+
+If value1 is greater than or equal to value2, true is output;
+otherwise false is output.
+
+Examples: GREATEREQUAL? 4 4  (outputs "true)
+          GREATER? 4 4       (outputs "false)
+
+See also: EQUAL?, LESS?, LESSEQUAL?
+</item>
+
+<item name="heading" key="turtl">
+HEADING
+
+Outputs the turtle's heading (degrees). In Logo degrees are
+measured clockwise from the positive Y axis, i.e.,
+
+      0 is due North (up),
+     90 is due East  (right),
+    180 is due South (down), and
+    270 is due West  (left). 
+
+See also: SETHEADING, TOWARDS
+</item>
+
+<item name="help,ctrl-h" key="directive">
+HELP
+Ctrl-h (in sEmacs)
+[f1]
+
+Print context-dependent help. When the CommandCenter is active,
+an overview of TG is displayed. When an editor is active, a
+list of available editing commands is displayed.
+
+In the CommandCenter, HELP can be followed by a keyword. All
+information in the help database associated with the keyword
+is printed.
+</item>
+
+<item name="hideturtle,ht" key="turtl">
+HIDETURTLE
+HT
+
+Makes the turtle invisible.
+</item>
+  
+<item name="home" key="turtl">
+HOME
+
+Moves the turtle to the center of the graphics window,
+i.e., coordinates 0,0.
+</item>
+
+<item name="homekey">
+[HOME]
+
+Moves the cursor to the beginning of the current line.
+</item>
+ 
+<item name="if">
+IF trueFalse [ instructions ]
+
+The instructions enclosed in the square brackets are performed if the
+trueFalse value is true, nothing is done if it's false.  The trueFalse
+value must be either true or false.
+
+Example: IF LESS? :INPUT 0 [ STOP ]
+</item>
+ 
+<item name="ifelse">
+IFELSE trueFalse [ true-stuff ] [ false-stuff ]
+
+The instructions enclosed in the first set of square brackets are
+performed if the trueFalse value is true, The instructions enclosed
+in the second set of square brackets if it's false.  The trueFalse
+value must be either true or false.
+
+Example: IFELSE EMPTY? :WD [PRINTLN "***] [PRINTLN :WD]
+</item>
+
+<item name="insertfile">
+Ctrl-x i
+
+The Editor prompts for the name of a file that is to be read in
+and inserted at the current position.
+</item>
+
+<item name="insertparens">
+Esc (
+
+A pair of parenthesis is inserted at the current position
+and the cursor moves to in between them.
+</item>
+
+<item name="int" key="math">
+INT number
+
+Outputs number with its fractional part removed.
+
+See also: CEIL, FLOOR, ROUND
+</item>
+
+<item name="item">
+ITEM number word-or-list-or-array
+
+Outputs the number-th member of its second input.  If its second input
+is a word, it outputs a word consisting on the number-th character.
+If its second input is a list, it outputs the number-th member of it.
+If its second input is an array, it outputs the number-th member of it.
+
+See also: ARRAY, SETITEM
+</item>
+
+<item name="jlogofiles" key="input,io,load" key="directive">
+JLOGOFILES
+
+Prints a list of all the .jlogo files in the current directory or the
+Internet site TG came from if running as an applet.
+
+See also: CD, DIR, LOADCODE, LS, PWD
+</item>
+
+<item name="keypressed" key="input,io,str,text">
+KEYPRESSED
+
+If a user-defined procedure with the name KEYPRESSED,
+expecting one input, has been defined, it is performed when
+a key is depressed while the graphics canvas has focus.
+
+Example: TO keyPressed :keyNum
+           PRINTLN SENTENCE "keyPressed= :keyNum
+           END
+
+The keyNum input gets a number representing a character if the
+key generates one, otherwise a unique value for an action key.
+
+  Number    Character Key           Number   Action Key
+ --------   ----------------        ------   -----------
+     8      Backspace                65536   Up Arrow
+     9      Tab                      65537   Down Arrow
+    10      Enter                    65538   Left Arrow
+    27      Esc                      65539   Right Arrow
+ 32 - 127   ASCII Characters         65540   Alt
+                                     65541   Control
+                                     65542   Shift
+                                     
+
+See also: CHAR, KEYRELEASED, KEYTYPED
+</item>
+
+<item name="keyreleased" key="input,io,str,text">
+KEYRELEASED
+
+If a user-defined procedure with the name KEYRELEASED,
+expecting one input, has been defined, it is performed when
+a key is released while the graphics canvas has focus.
+
+Example: TO keyReleased :keyNum
+           PRINTLN SENTENCE "keyReleased= :keyNum
+           END
+
+The keyNum input gets a number representing a character if the
+key generates one, otherwise a unique value for an action key.
+
+  Number    Character Key           Number   Action Key
+ --------   ----------------        ------   -----------
+     8      Backspace                65536   Up Arrow
+     9      Tab                      65537   Down Arrow
+    10      Enter                    65538   Left Arrow
+    27      Esc                      65539   Right Arrow
+ 32 - 127   ASCII Characters         65540   Alt
+                                     65541   Control
+                                     65542   Shift
+
+See also: CHAR, KEYPRESSED, KEYTYPED
+</item>
+
+<item name="keytyped" key="input,io,str,text">
+KEYTYPED
+
+If a user-defined procedure with the name KEYTYPED,
+expecting one input, has been defined, it is performed when
+a key which produces a character is pressed and released while
+the graphics canvas has focus.
+
+  Number    Key
+---------   ----------------
+     8      Backspace
+     9      Tab
+    10      Enter
+    27      Esc
+ 32 - 127   ASCII Characters
+
+See also: CHAR, KEYPRESSED, KEYRELEASED
+</item>
+
+<item name="killregion,ctrl-w">
+Ctrl-w
+
+Deletes highlighted region of text (the current selection)
+placing it in a temporary holding area.
+</item>
+  
+<item name="label" key="font,str,text,turtl">
+LABEL datum
+
+The text representing LABEL's input is drawn on the canvas. The
+turtle's position is the bottom-left corner of the text is at.
+
+See also: LABELWIDTH, SETLABELFONT, SETLABELHEIGHT
+</item>
+
+<item name="labelheight" key="str,text,turtl">
+LABELHEIGHT
+
+Outputs an approximation of the height of capital letters
+drawn in the current font face.
+
+See also: LABEL, SETLABELFONT, SETLABELHEIGHT, LABELWIDTH
+</item>
+
+<item name="labelwidth" key="str,text,turtl">
+LABELWIDTH datum
+
+Outputs the width of the textual representation of its
+input drawn in the current font face.
+
+See also: LABEL, LABELHEIGHT, SETLABELFONT, SETLABELHEIGHT
+</item>
+
+<item name="last">
+LAST word-or-list
+
+If the input is a word, its last character is output.  If the
+input is a list, its last member is output.
+</item>
+
+<item name="left,lt" key="turtl">
+LEFT number
+LT number
+
+Turns the turtle counterclockwise by the specified angle measured
+by a number of degrees (1/360 of a circle).
+</item>
+
+<item name="leftarrow">
+[LEFT ARROW]
+
+Moves the cursor back one character.
+</item>
+
+<item name="less?,lessp">
+LESS? value1 value2
+LESSP value1 value2
+
+If value1 is less than value2, true is output; otherwise false is output.
+
+Examples: LESS? 15 10 (outputs "false)
+          LESS? -7 -3 (outputs "true)
+
+See also: EQUAL?, LESSEQUAL?, GREATER?, GREATEREQUAL?
+</item>
+
+<item name="lessequal?,lessequalp">
+LESSEQUAL? value1 value2
+LESSEQUALP value1 value2
+
+If value1 is less than or equal to value2, true is output;
+otherwise false is output.
+
+Examples: LESSEQUAL? -5 -5  (outputs "true)
+          LESS? -5 -5       (outputs "false)
+
+See also: EQUAL?, GREATER?, GREATEREEQUAL?
+</item>
+
+<item name="linecap" key="pen,turtl">
+LINECAP
+
+Get a number representing the way the ends of lines drawn are treated.
+
+Number  Style
+------  ------
+   0    BUTT    No ending treatment (default).
+   1    ROUND   End rounded with semicircle.
+   2    SQUARE  End extended half pensize.
+
+See also: PENPATTERN, SETLINECAP, SETPENPATTERN
+</item>
+
+
+<item name="list">
+LIST thing1 thing2
+
+Outputs a list whose members are its inputs, which can be any jLogo datum
+(arrays, lists, and words).
+</item>
+
+<item name="list?,listp">
+LIST? thing
+LISTP thing
+
+Outputs true if the input thing is a list; otherwise false is output.
+</item>
+
+<item name="listtoarray">
+LISTTOARRAY list
+
+Outputs an array whose members are the members of the input list.
+</item>
+
+<item name="loadclip" key="audio,input,io,load,sound">
+LOADCLIP word clipNumber
+
+Reads in the .wav (waveform) audio file named word and associates it
+with clipNumber.  ClipNumber must be in the range 32 - 127.
+
+Example: LOADCLIP "FairyDust.wav 32
+
+See Also: PLAYCLIP
+</item>
+
+<item name="loadcode" key="input,io,load" key="directive">
+LOADCODE word
+
+Reads the file named word, placing its contents in the Editor. The
+text is placed at the current location of the cursor.
+
+Example: LOADCODE Colors.jlogo
+
+See also: CD, JLOGOFILES, PWD
+</item>
+
+<item name="loadpicture,loadpict" key="input,io,load">
+LOADPICTURE word
+LOADPICT word
+
+Reads an image file named word and makes it the background. All
+existing graphics is cleared. Supported image file formats are
+.bmp, .gif, .jpg, and .png files.
+
+Example: LOADPICTURE "clouds.bmp
+
+See also: SAVEPICTURE
+</item>
+
+<item name="loadshape" key="input,io,load">
+LOADSHAPE word shapeNumber
+
+Reads an image file named word and associates it with shape number
+shapeNumber.  The turtle's appearance can then be changed to this
+image with the SETSHAPE command. ShapeNumber must be in the range
+32 - 127.
+
+LOADSHAPE sentence shapeNumber
+
+Reads an image file and associates it with shapeNumber. The name
+of the file is the first member of sentence. The second (last)
+member of sentence is a number corresponding to a rotation style.
+
+   Number  Rotation Style
+   ------  --------------------------------------
+      0    Default rotation
+      1    No rotation
+      2    Flipping rotation (left facing image)
+      3    Flipping rotation (right facing image)
+
+Example: LOADSHAPE [Fish_Rt.png 3] 32
+         SETSHAPE 32
+</item>
+
+<item name="local">
+LOCAL word-or-list
+
+Declares that a word or all the words in a list are variables
+that can only be accessed within the procedure enclosing the LOCAL
+command. The names given to the variable(s) are the word(s). The
+variables initially have the value null.
+
+See also: GLOBAL, LOCALMAKE
+</item>
+
+<item name="localmake">
+LOCALMAKE word value
+
+Creates a variable with access limited to the procedure containing
+the LOCALMAKE command.  The variable's name is word.  The contents
+of the variable is set to value.
+
+Example: LOCALMAKE "rightX SUM :leftX (DIFFERENCE :width 1)
+
+See also: GLOBAL, LOCAL
+</item>
+
+<item name="log" key="math">
+LOG number
+
+Outputs the natural logarithm of the input number.
+</item>
+
+<item name="lowercase" key="str,text">
+LOWERCASE word
+
+Outputs a copy of the input word, but with all uppercase letters
+changed to the corresponding lowercase letters.
+
+See also: ASCII, CHAR, UPPERCASE
+</item>
+
+<item name="lput">
+LPUT thing list
+
+Outputs a list equal to its second input with one extra member, the first
+input, at the end.  If the second input is a word, then the first input
+must be a one-letter word, and the output:
+</item>
+
+<item name="ls" key="commandcenter,input,io,load">
+LS pattern
+
+Prints the names of files in the current directory.
+Without a pattern input, all file names are printed.
+With a pattern input, all files that have names which
+match the pattern are printed. Patterns can consist of
+characters and the wildcard '*' (matching any number
+of any characters).
+
+Example: LS draw*.jlogo
+
+See also: AUDIOFILES, CD, DIR, JLOGOFILES, PICTFILES, PWD
+</item>
+
+
+<item name="lshift" key="math,shift">
+LSHIFT num1 num2
+
+Outputs num1 shifted to the left by num2 bits. If num2 is negative, the
+shift is to the right with zero fill.  The inputs must be integers.
+
+See also: ASHIFT, BITAND, BITNOT, BITOR, BITXOR
+</item>
+
+<item name="make">
+MAKE id value
+
+Creates a global variable named name if it doesn't already exist.
+The contents of the variable named id is set to value.
+
+Example: MAKE "white 7
+</item>
+
+<item name="member?,memberp">
+MEMBER? character word
+MEMBER? datum array
+MEMBER? word list
+MEMBERP character word
+MEMBERP datum array
+MEMBERP word list
+
+Outputs true if its first input is in its second input, otherwise
+it outputs false. For arrays, a first input of "null matches an
+empty member.
+</item>
+
+<item name="minus" key="math">
+MINUS number
+
+Outputs the negative of number.
+
+Examples: MINUS 10  (outputs -10)
+          MINUS -5  (outputs 5)
+</item>
+
+<item name="mouseclicked" key="input,io,mouse">
+MOUSECLICKED
+MOUSECLICKED :xCor :yCor
+MOUSECLICKED :posSentence
+
+When the left mouse button is clicked in TG's graphics canvas, the
+jLogo interpreter receives an event.  If a user-defined procedure
+with the name MOUSECLICKED exists, it is performed.  Three flavors
+of this user-defined procedure are available with different inputs.
+
+Example: TO mouseClicked :x :y
+           PRINTLN (SE "mouseclicked "at :x ", :y)
+           END
+
+See also: MOUSEMOVED, MOUSEX, MOUSEY
+</item>
+
+<item name="mousemoved" key="input,io,mouse">
+MOUSEMOVED
+MOUSEMOVED :xCor :yCor
+MOUSEMOVED :posSentence
+
+When the mouse is moved around in TG's graphics canvas, the jLogo
+interpreter receives an event.  If a user-defined procedure with the
+name MOUSEMOVED exists, it is performed.  Three flavors of this
+user-defined procedure are available with different inputs.
+
+Example: TO mouseMoved :pos
+           SETPOS :pos
+           END
+
+See also: MOUSECLICKED, MOUSEX, MOUSEY, POS
+</item>
+
+<item name="mousepos" key="input,io,mouse">
+MOUSEPOS
+
+Outputs a two member sentence consisting of the X and Y coordinates
+where the mouse is at the point in time when MOUSEPOS is performed
+by the interpreter.
+
+</item>
+
+<item name="mousex" key="input,io,mouse">
+MOUSEX
+
+Outputs the mouse's X-coordinate.
+</item>
+
+<item name="mousey" key="input,io,mouse">
+MOUSEY
+
+Outputs the mouse's Y-coordinate.
+</item>
+
+<item name="newfile,ctrl-n">
+Ctrl-n (in WinEdit)
+
+Clear the Editor for new contents. If unsaved changes
+currently exist in the Editor, you will be prompted to
+save them.
+</item>
+
+<item name="newturtle,nt" key="turtl">
+NEWTURTLE word
+NT word
+
+Creates a new turtle with the name word.  The current
+turtle is not effected and remains the current turtle.
+
+See also: ASK, TALKTO, TELL
+</item>
+
+<item name="nextline,ctrl-n">
+[DOWN ARROW]
+Ctrl-n (in sEmacs)
+
+Moves the cursor down to the next line.
+</item>
+
+<item name="norounding" key="math">;
+NOROUNDING
+
+Turns off rounding in mathematical operations.
+</item>
+
+<item name='not');
+NOT trueFalse
+
+Outputs false if trueFalse is true, else false.
+</item>
+
+<item name='number?,numberp');
+NUMBER? thing
+NUMBERP thing
+
+Outputs true it the input thing is a number,
+else outputs false.
+</item>
+
+<item name="openfile,ctrl-o">
+Ctrl-o (in WinEdit)
+
+The Editor prompts for the name of the file that is
+to be opened, replacing the current contents. If
+unsaved changes currently exist in the Editor, you
+will be prompted to save them.
+</item>
+
+<item name="openline,ctrl-o">
+Ctrl-o (in sEmacs)
+
+Opens a line (inserts a newline character) at the
+current position of the cursor.
+</item>
+
+<item name="or">
+OR trueFalse1 trueFalse2
+
+Outputs true if trueFalse1 OR trueFalse2 is true,
+otherwise it outputs false.
+
+Example:
+IF OR (EQUAL? XCOR 0) (EQUAL? YCOR 0) [PR [On Axis]]
+</item>
+
+<item name="output,op">
+OUTPUT value
+OP value
+
+The current invocation of the procedure in which OUTPUT exists is
+terminated and value is output.
+
+Example: TO randomColor
+           OUTPUT RANDOM 16
+           END
+</item>
+
+<item name="paste,ctrl-v">
+Ctrl-v (in WinEdit)
+
+Inserts the contents of the temporary text holding area
+in front of the cursor.
+</item>
+
+<item name="pencolor" key="color,pen,turtl">
+PENCOLOR
+
+Outputs the current color number of the turtle's pen.
+</item>
+
+<item name="pendown,pd" key="pen,turtl">
+PENDOWN
+PD
+
+Puts the turtle's pen down so that it leaves a trace when it moves.
+
+See also: PENDOWN?, PENUP
+</item>
+
+<item name="pendown?" key="pen,turtl">
+PENDOWN?
+
+Outputs true if the turtle's pen is in the down position, else false.
+
+See also: PENDOWN, PENUP
+</item>
+
+<item name="penpattern" key="pen,turtl">
+PENPATTERN
+
+Outputs a sentence which contains the dashed-line pattern the
+turtle is using to draw.  An empty sentence ('[ ]') means the
+turtle is drawing solid lines. Non-empty sentences are composed
+of pairs of draw/skip distances. Odd members of the sentence
+(1st, 3rd, ...) are distances to draw, even members are skip
+distances.
+
+See also: LINECAP, PENPATTERN, SETLINECAP
+</item>
+
+
+<item name="pensize" key="pen,turtl">
+PENSIZE
+
+Outputs the size of the turtle's pen, its width in turtleSteps.
+</item>
+
+<item name="penup,pu" key="pen,turtl">
+PENUP
+PU
+
+Lifts the turtle's pen up so that it leaves no trace when the
+turtle moves.
+
+See also: PENDOWN, PENDOWN?
+</item>
+
+<item name="pi" key="math">
+PI
+
+Outputs 3.141592653589793
+
+</item>
+
+<item name="pictfiles" key="directive,input,io,load,save">
+PICTFILES
+
+Prints a list of all the .bmp files in the current directory or the
+Internet site TG came from if running as an applet.
+
+See also: CD, DIR, LOADPICTURE, LOADSHAPE, LS, PWD, SAVEPICTURE
+</item>
+
+<item name="playclip" key="audio,io,output,sound,load">
+PLAYCLIP clipNumber
+
+A WAV (waveform) audio clip is played.
+
+   Number  Audio Clip
+   ------  --------------
+      1    Cat Meow
+      2    Computer Beeps
+      3    Dog Bark
+      4    Fairy Dust
+      5    Horse
+      6    Laser
+      7    Pop
+      8    Zoop
+  
+Example: PLAYCLIP 2
+
+See Also: LOADCLIP, PLAYNOTE
+</item>
+
+<item name="playnote,pn" key="audio,io,output,sound">
+PLAYNOTE noteNumber length
+
+A MIDI note number is played for length seconds. In this scheme,
+middle C is note number 60 with all other notes relative to this.
+
+                           Note Numbers
+Octave |  C  C#    D  D#    E    F  F#    G  G#    A  A#    B
+-------+--------+--------+----+--------+--------+--------+---
+  -1   |  0   1 |  2   3 |  4 |  5   6 |  7   8 |  9  10 | 11
+   0   | 12  13 | 14  15 | 16 | 17  18 | 19  20 | 21  22 | 23
+   1   | 24  25 | 26  27 | 28 | 29  30 | 31  32 | 33  34 | 35
+   2   | 36  37 | 38  39 | 40 | 41  42 | 43  44 | 45  46 | 47
+   3   | 48  49 | 50  51 | 52 | 53  54 | 55  56 | 57  58 | 59
+   4   | 60  61 | 62  63 | 64 | 65  66 | 67  68 | 69  70 | 71
+   5   | 72  73 | 74  75 | 76 | 77  78 | 79  80 | 81  82 | 83
+   6   | 84  85 | 86  87 | 88 | 89  90 | 91  92 | 93  94 | 95
+   7   | 96  97 | 98  99 |100 |101 102 |103 104 |105 106 |107
+   8   |108 109 |110 111 |112 |113 114 |115 116 |117 118 |119
+   9   |120 121 |122 123 |124 |125 126 |127
+
+The absolute octave number designations shown here are based on
+Middle C = C4.
+
+Example: PLAYNOTE 60 2
+
+See Also: PLAYCLIP
+</item>
+
+<item name="pos" key="turtl">
+POS
+
+Outputs the current coordinates of the turtle as a sentence. The
+X coordinate is the FIRST of the sentence; the Y coordinate is the
+LAST of the sentence.
+
+Example: MAKE "curLoc POS
+</item>
+
+<item name="power,pow" key="math">
+POWER num1 num2
+POW num1 num2
+
+Outputs num1 to the num2 power.
+</item>
+
+<item name="prevline,ctrl-p">
+[UP ARROW]
+Ctrl-p (in sEmacs)
+
+Moves the cursor up to the previous line.
+</item>
+
+<item name="print,type" key="io,output,str,text">
+PRINT datum
+TYPE datum
+
+The text representing PRINT's input is drawn in the CommandCenter.
+</item>
+
+<item name="printglobals,pg"  key="debug,directive">
+PRINTGLOBALS
+PG
+
+Prints the names and values of all global variables.
+</item>
+
+<item name="println,pr" key="io,output,str,text">
+PRINTLN datum
+PR datum
+
+The text representing PRINTLN's input is drawn in the CommandCenter
+and the line is finished off by moving the cursor to the start of
+the next line.
+</item>
+
+<item name="printprocs,pp" key="debug,directive">
+PRINTPROCS
+PP
+
+Prints the names and inputs of all the user-defined procedures.
+</item>
+
+<item name="printstack,ps" key="debug,directive">
+PRINTSTACK
+PS
+
+Prints the procedure invocation stack collected upon last runtime
+error.
+</item>
+
+<item name="printtext,pt" key="debug,directive">
+PRINTTEXT name
+PT name
+
+Prints the source code representation of the user-defined procedure
+named name.
+</item>
+ 
+<item name="product" key="math">
+PRODUCT number1 number2
+
+Outputs the result of multiplying number1 by number2.
+
+Supports a variable number of inputs with surrounding parenthesis,
+e.g., (PRODUCT MOUSEX :scale 10)
+</item>
+ 
+<item name="pwd" key="directive,io">
+PWD
+
+Prints the current working directory, which can be a URL if TG is
+running as an applet.
+
+See also: AUDIOFILES, CD, DIR, JLOGOFILES, LS, PICTFILES
+</item>
+
+<item name="ctrl-q,quit" key="commandcenter,debug">
+Ctrl-q (in CommandCenter)
+
+Quit... stop interpreting the current program.
+</item>
+
+<item name="quotient" key="math">
+QUOTIENT number1 number2
+
+Outputs the result of dividing number1 by number2.
+
+Example: QUOTIENT 32768 4096  (outputs 8)
+</item>
+
+<item name="random">
+RANDOM number
+
+Outputs some integer greater-than or equal-to zero AND
+less-than number.
+
+Example: RANDOM 16
+</item>
+
+<item name="readlist" key="input,io,str,text">
+READLIST
+
+Reads a line from the CommandCenter and outputs that line
+as a list. The line is separated into members as if it were
+typed in square brackets in an instruction.
+
+Example: MAKE "inpTxt READLIST
+</item>
+
+<item name="readword" key="input,io,str,text">
+READWORD
+
+Reads a line from the CommandCenter and outputs that line
+as a word. The output is a single word even if the line
+contains spaces, brackets, etc.
+
+Example: MAKE "inpTxt READWORD
+</item>
+
+<item name="recenter,ctrl-l">
+Ctrl-l
+
+Make the current line this window's center line.
+</item>
+
+<item name="remainder" key="math">
+REMAINDER number1 number2
+
+Output the remainder left after dividing number1 by number2.
+
+Example: REMAINDER 1234 10  (outputs 4)
+</item>
+
+<item name="repcount" key="iterat">
+REPCOUNT
+
+Outputs the current value of the variable controlling iteration
+in the REPEAT command in which it is invoked.
+
+Example: REPEAT 20 [FORWARD (PRODUCT 10 REPCOUNT) RIGHT 90]
+</item>
+
+<item name="repeat" key="iterat">
+REPEAT number [instructions]
+REPEAT [startNum endNum incrNum] [instructions]
+
+In its first form, repeats the instructions enclosed in the
+square brackets the specified number of times.
+
+In its second form, repeats the instructions enclosed in the
+square brackets until repcount is out of the range of startNum
+through endNum. Initially repcount is set to startNum. After
+each time instructions are performed, incrNum is added to
+repcount.
+
+Example: REPEAT 4 [FORWARD 100 RIGHT 90]
+</item>
+
+<item name="revsrch,ctrl-r">
+Ctrl-r
+
+Reverse search, i.e., search backwards toward the first
+character in the Editor, for a sequence of characters.
+Ctrl-g, the abortCmd, cancels a search.
+
+Typing Ctrl-r twice in quick succession repeats a search.
+</item>
+
+<item name="right,rt" key="turtl">
+RIGHT number
+RT number
+
+Turns the turtle clockwise by the specified angle, measured in
+degrees (1/360 of a circle).
+</item>
+
+<item name="rightarrow">
+[RIGHT ARROW]
+
+Moves the cursor forward one character.
+</item>
+
+<item name="round" key="math">
+ROUND number
+
+Outputs the closest integer to number.
+
+Example: ROUND 22.45 (outputs 22)
+
+See also: CEIL, FLOOR, INT
+</item>
+  
+<item name="run">
+RUN instructionList
+
+Perform a list of Logo instructions.
+
+Example: MAKE "box100 [REPEAT 4 [FORWARD 100 RIGHT 90]]
+         RUN :box100
+</item>
+
+<item name="scrolldn,ctrl-v">
+Ctrl-v (in sEmacs editor)
+[PAGEDOWN]
+
+Replaces the lines displayed with the lines below them,
+i.e., the next page.
+</item>
+
+<item name="save,ctrl-s">
+Ctrl-s (in WinEdit editor)
+Ctrl-x Ctrl-s (in Emacs editor)
+
+Save the Editor's contents to the current file name.
+
+See also: WRITEFILE (Emacs editor), SAVEPICTURE
+</item>
+
+<item name="savepicture,savepict" key="input,io,load,save">
+SAVEPICTURE word
+SAVEPICT word
+
+Writes the contents of the graphics canvas to an image file
+named word. Supported image file formats are .gif, .jpg, and
+.png files.
+
+SAVEPICTURE is not available when TG is running as an applet.
+
+Example: SAVEPICTURE "Splat.png
+
+See also: LOADPICTURE
+</item>
+
+<item name="scrollup">
+Esc v (in sEmacs)
+[PAGEUP]
+
+Replaces the lines displayed with the lines above them,
+i.e., the previous page.
+</item>
+
+
+<item name="search,ctrl-s">
+Ctrl-s (in sEmacs)
+
+Search for a sequence of characters. A search prompt bar
+pops up for entering the desired sequence of characters.
+Ctrl-g, the abortCmd, cancels a search.
+
+Typing Ctrl-s twice in quick succession repeats a search.
+</item>
+
+<item name="selectall,ctrl-a">
+Ctrl-a (in WinEdit editor)
+Ctrl-x h (in sEmacs editor)
+
+Selects all of the text in the Editor.
+</item>
+
+<item name="sentence,se">
+SENTENCE word word
+SENTENCE word list
+SENTENCE list word
+SENTENCE list list
+
+Outputs a flattened list (reduced to words) consisting of its
+first input concatenated with its second input.
+
+Supports a variable number of inputs with surrounding parenthesis,
+e.g., (SE "word1 "word2 [sewd1 sewd2] "lastword)
+
+Abreviation: SE
+</item>
+
+<item name="setbackground,setbg" key="color">
+SETBACKGROUND number
+SETBG number
+
+Sets the color of the background of the graphics canvas to the
+input color number .  Numbers in the range of 0 - 31 represent
+colors in the following table.  Other numbers are treated as
+four concatenated 8-bit (0-255) values: alpha, red, green, and
+blue (in that order).
+
+Number Color        Number Color        Number Color
+------ ----------   ------ ----------   ------ ---------
+   0   black          11   aqua           22   gold
+   1   blue           12   salmon         23   lightgray
+   2   green          13   violet         24   peru
+   3   cyan           14   orange         25   wheat
+   4   red            15   grey           26   palegreen
+   5   magenta        16   navy           27   lightblue
+   6   yellow         17   skyblue        28   khaki
+   7   white          18   lime           29   pink
+   8   brown          19   steelblue      30   lawngreen
+   9   light brown    20   chocolate      31   olive
+  10   forest         21   purple
+
+See also: BACKGROUND
+</item>
+  
+<item name="setheading,seth" key="turtl">
+SETHEADING number
+SETH number
+
+Turns the turtle to a new absolute heading.  The input number is
+the heading in degrees clockwise from the positive Y axis, i.e.,
+
+      0 is due North (up),
+     90 is due East  (right),
+    180 is due South (down), and
+    270 is due West  (left). 
+
+Example: SETH 90
+</item>
+
+<item name="setitem">
+SETITEM index array value
+
+Replaces the indexth member of array with value.
+
+Example: SETITEM 2 :nums "two
+
+See also: ARRAY, ITEM
+</item>
+
+<item name="setlabelfont,setlf" key="font,text,turtl">
+SETLABELFONT number
+SETLF number
+
+Sets the font face and style of characters drawn
+with the LABEL procedure.
+
+Number  Font        Style
+------  ----------  -----------
+   0    Courier     Plain
+   1    Courier     Bold
+   2    Courier     Italic
+   3    Courier     Bold Italic
+   4    Sans Serif  Plain
+   5    Sans Serif  Bold
+   6    Sans Serif  Italic
+   7    Sans Serif  Bold Italic
+   8    Serif       Plain
+   9    Serif       Bold
+  10    Serif       Italic
+  11    Serif       Bold Italic
+
+Example: SETLABELFONT 4
+
+See also: LABEL, LABELWIDTH, SETLABELHEIGHT
+</item>
+
+<item name="setlabelheight,setlh" key="font,text,turtl">
+SETLABELHEIGHT number
+SETLH number
+
+The height of capital letters the turtle draws on the graphics
+canvas (LABEL) is set to the input. All other characters in the
+current font are drawn with heights proportional to caps.
+
+Example: SETLABELHEIGHT 24
+
+See also: LABEL, LABELHEIGHT, LABELWIDTH, SETLABELFONT
+</item>
+
+<item name="setlinecap,setlc" key="pen,turtl">
+SETLINECAP number
+SETLC number
+
+Set the way the ends of lines drawn are treated.
+
+Number  Style
+------  ------
+   0    BUTT    No ending treatment (default).
+   1    ROUND   End rounded with semicircle.
+   2    SQUARE  End extended half pensize.
+
+Example: SETLINECAP 1
+
+See also: LINECAP, PENPATTERN, SETPENPATTERN
+</item>
+
+<item name="setmark">
+Ctrl-@
+Ctrl-Space
+
+Mark the start of a selection which will be made with cursor
+movement commands.
+</item>
+  
+<item name="setpencolor,setpc" key="color,pen,turtl">
+SETPENCOLOR number
+SETPC number
+
+Sets the turtle's color - the color of its pen. Color is
+expressed as a number.  The available colors are:
+
+Number Color        Number Color        Number Color
+------ ----------   ------ ----------   ------ ---------
+   0   black          11   aqua           22   gold
+   1   blue           12   salmon         23   lightgray
+   2   green          13   purple         24   peru
+   3   cyan           14   orange         25   wheat
+   4   red            15   grey           26   palegreen
+   5   magenta        16   navy           27   lightblue
+   6   yellow         17   skyblue        28   khaki
+   7   white          18   lime           29   pink
+   8   brown          19   steelblue      30   lawngreen
+   9   light brown    20   chocolate      31   olive
+  10   forest         21   purple
+
+If number is greater than 31, it is assumed to be a
+24-bit RGB color value.
+
+Example: SETPENCOLOR 10
+</item>
+
+<item name="setpenpattern,setpp" key="pen,turtl">
+SETPENPATTERN sentence
+SETPENPATTERN number
+SETPP sentence
+SETPP number
+
+Turn dashed lines on/off. With an input of zero ('0') or an empty
+sentence ('[ ]'), the turtle draws a solid line. Otherwise the
+turtle draws some amount then picks up the pen for some amount,
+repeating this sequence until it gets where it's going. An input
+of [10 5] means ten turtle steps with the pen down followed by
+five steps with it up - this pattern repeated. If the input is
+a non-zero number, it is treated as identical up/down amounts.
+
+Example: SETPENPATTERN [5 3 10 5]
+
+See also: LINECAP, PENPATTERN, SETLINECAP
+</item>
+
+<item name="setpensize,setps" key="pen,turtl">
+SETPENSIZE number
+SETPS number
+
+Sets the width of the turtle's pen, which determines the
+thickness of the trace it leaves, the line it draws.
+
+Example: SETPENSIZE 5
+</item>
+  
+<item name="setpixels" key="io,output,pix">
+SETPIXELS rectangleList pixelArray
+
+Paints the values of pixels in pixelArray onto the area of the
+graphics canvas specified by rectangleList. Pixel values are color
+numbers. A rectangleList has the form [leftX, topY, width, height].
+
+Example: SETPIXELS [-5 2 11 5] :colors
+</item>
+  
+<item name="setpos" key="turtl">
+SETPOS two-number-sentence
+  
+Moves the turtle to an absolute position, specified by a sentence
+containing two numbers.  The two numbers are (FIRST) a new horizontal
+(X) coordinate and (LAST) a new vertical (Y) coordinate.
+
+Example: SETPOS [100 100]
+</item>
+
+<item name="setrounding" key="math">;
+SETROUNDING number
+
+Turns on rounding in mathematical operations. Mathematical operations
+are rounded to number places. Rounding is useful due to the limitation
+of accuracy of floating point numbers.
+</item>
+
+  
+<item name="setshape,setsh" key="turtl">
+SETSHAPE number
+SETSH number
+
+Sets the turtle's shape to a specified shape.  Shape is expressed as
+a number.  The available shapes are:
+  
+SETSHAPE number-sentence
+SETSH number-sentence
+
+Sets the turtle's shape to a specified shape and size.  The first number
+in the sentence is the shape number (see SETSHAPE number) and subsequent
+numbers specify a preferred size, which is shape dependent.
+
+   Number  Shape      Optional Size Parameters
+   ------  --------   ------------------------
+      0    Turtle
+      1    Arrow      width, height
+      2    Ball       diameter
+      3    Box        width, height
+      4    Cross      width, height
+      5    Triangle   width, height
+      6    Diamond    width, height
+
+Example: SETSHAPE [3 100 10]
+</item>
+  
+<item name="setx" key="turtl">
+SETX number
+
+Moves the turtle horizontally to the specified absolute window position.
+
+Example: SETX 100
+</item>
+  
+<item name="setxy" key="turtl">
+SETXY number1 number2
+
+Moves the turtle to an absolute position, specified as two numbers:
+the new horizontal (X) and vertical (Y) coordinates.
+
+Example: SETXY 50 -30 
+</item>
+  
+<item name="sety" key="turtl">
+SETY number
+
+Moves the turtle vertically to the specified absolute window position.  
+
+Example: SETY 100
+</item>
+
+<item name="shapeheight" key="turtl,pix">
+SHAPEHEIGHT
+
+Outputs the height of the turtle's shape in pixels, the image for
+its current heading.
+</item>
+
+<item name="shapepixels" key="turtl,pix">
+SHAPEPIXELS
+
+Outputs a list containing two members. The first is the number of
+pixels in each row of the turtle's shape. The second is an array
+containing all of the pixels that make up the shape's image.
+</item>
+
+<item name="shapewidth" key="turtl,pix">
+SHAPEWIDTH
+
+Outputs the width of the turtle's shape in pixels, the image for
+its current heading.
+</item>
+
+<item name="show" key="io,output,str,text">
+SHOW datum
+
+Prints datum like PRINT, except that if datum is a sentence, its
+surrounding square brackets are also shown.
+</item>
+
+<item name="shown?,shownp" key="turtl">
+SHOWN?
+SHOWNP
+
+Outputs true if the turtle is shown (visible), else outputs false.
+
+See also: HIDETURTLE, SHOWTURTLE
+</item>
+
+<item name="showturtle,st" key="turtl">
+SHOWTURTLE
+ST
+
+Makes the turtle visible.
+</item>
+
+<item name="sin" key="math">
+SIN number
+
+Outputs the trigonometric sine of number which is in degrees.
+
+Example: SIN 30  (outputs 0.5)
+</item>
+
+<item name="sqrt" key="math">
+SQRT number
+
+Outputs the square root of number.
+
+Example: SQRT 64  (outputs 8)
+</item>
+
+<item name="stamp" key="turtl">
+STAMP
+
+Paint the turtle's image onto the graphics canvas.
+</item>
+
+<item name="stop">
+STOP
+
+The current invocation of the procedure in which STOP exists terminates.
+
+Example: IF EQUAL? :input 0 [STOP]
+</item>
+
+<item name="sum" key="math">
+SUM number1 number2
+
+Outputs the result of adding number1 and number2.
+
+Supports a variable number of inputs with surrounding parenthesis,
+e.g., (SUM :num1 XCOR :num3 3.14159 )
+</item>
+
+<item name="talkto"  key="directive,turtl">
+TALKTO turtleName
+
+Directs TG to pass input instructions typed into the CommandCenter
+to turtleName.  This turtle becomes the current turtle.
+
+Example: TALKTO ball
+
+See also: NEWTURTLE, TELL, ASK, WHO
+</item>
+
+<item name="throttle" key="debug">
+THROTTLE amount
+
+Slowdown the drawing in the graphics canvas for shown turtles. 
+After the turtle completes movement (e.g., FD, SETX, ...) or changes
+its heading (e.g., RT, SETH, ...), pause for amount milliseconds.
+
+Example: THROTTLE 500
+
+See also: Ctrl-t, PRINTSTACK, TRACE, UNTRACE
+</item>
+
+<item name="tan" key="math">
+TAN degrees
+
+Outputs the trigonometric tangent of degrees, which is in degrees.
+</item>
+
+<item name="tell" key="turtl">
+TELL turtleName [ instructions ]
+
+Gives the turtle named turtleName a list of instructions to perform.
+The current turtle is not effected and remains the current turtle.
+
+Example: TELL "paddle [SETSHAPE [3 100 10] PENUP HOME]
+
+See also: TELL, NEWTURTLE, TALKTO
+</item>
+
+<item name="tg">
+TG (which stands for Turtle Graphics) is a program which provides
+a programming environment for writing programs in jLogo.  jLogo is
+a subset of Berkeley Logo, written in Java with Java extensions.
+
+TG can run as an applet or as an application. The applet is embedded
+at appropriate places in BFOIT's Introduction to Programming lessons;
+as new concepts are presented, it can be used to experiment.  But,
+running TG as an application is a must when large programs are being
+written since it allows saving and loading code to/from files.
+
+TG has three parts to it:
+(1) a Graphics Canvas for drawing,
+(2) a CommandCenter for interaction with the Logo interpreter, and
+(3) an Editor for writing/modifying large programs.
+
+The Graphics Canvas (optional)
+-----------------------------
+is a window in which the turtle draws.  It also can provide keyboard
+and mouse input events to a jLogo program.
+
+The center of the graphics canvas is the coordinate 0,0.  Positive X
+is to the right; positive Y is up.  Headings (angles) are measured
+in degrees clockwise from the positive Y axis.  Turtles initially
+appear at 0,0 (a.k.a. HOME).
+
+The CommandCenter
+-----------------
+is a window that provides a mechanism for interacting with the jLogo
+interpreter.  Most instructions typed in this area are passed to
+the interpreter; output from the interpreter and/or jLogo programs
+(as an example via PRINTLN commands) is displayed here.
+
+Program management directives are also typed into this window. They
+control operation of the interpreter, but are not part of the jLogo
+programming language.
+
+The up-arrow and down-arrow keys access a history list of the most
+recently entered lines of input.
+
+The Editor (optional)
+---------------------
+is a window that supports editing program source code.
+
+It understands two different sets of commands. WINEDIT commands
+match Microsoft Windows Notepad and many other applications, e.g.,
+COPY is Ctrl-C, PASTE is Ctrl-Z, etc... The HELP WINEDIT command
+provides a complete list. The second set is an EMACS subset. The
+HELP EMACS command provides details.
+
+In the application flavor of TG, the editor's contents can be saved
+to a file for reloading at a future point.  A file's contents is
+passed to the Logo interpreter as it is loaded.
+
+Another way of getting code into or out of the editor when running
+in application mode is COPY, CUT, and PASTE.
+
+NOTE THAT NO IMMEDIATE INTERACTION OCCURS BETWEEN THE EDITOR AND
+THE INTERPRETER.
+
+The contents of the editor is passed to the interpreter when
+(1) focus leaves the editor window, or
+(2) the Window->Editor->Interpret menu item is selected.
+
+Resizing the Windows
+--------------------
+To change the height of one of the windows, hold down the LEFT
+mouse button while positioned on its namestripe and drag it up
+or down.
+</item>
+
+<item name="thing">
+THING name
+
+Outputs the value in its input, a global variable named name.
+Dots name (":name") can be thought of as an abbreviation for
+THING "name.  But, the real need for THING is when the names
+of variables are constructed dynamically.
+
+Example: TO incr :numVarId
+           MAKE :numVarId SUM (THING :numVarId) 1
+           END
+</item>
+
+<item name="time" key="debug">
+TIME
+
+Outputs the current time in milliseconds since January 1, 1970.
+TIME can be used to measure how long it takes to do something.
+</item>
+
+<item name="to" key="directive">
+TO procname :input1 :input2 ...
+
+Initiates definition of a procedure. It will be named procname.
+Inputs, which are optional, are given the names input1, input2,
+etc. All names are case-insensitive.
+
+Example: TO box :size
+           REPEAT 4 [FORWARD :size RIGHT 90]
+           END
+</item>
+
+<item name="top,esclt">
+Esc &lt;
+
+Move the cursor to the first line in the Editor.
+</item>
+
+<item name="towards" key="turtl">
+TOWARDS two-number-sentence
+
+Outputs a number, the heading at which the turtle should be facing
+so that it would point from its current position to the position
+given as an input - a sentence consisting of two numbers.
+
+Example: SETHEADING TOWARDS [0 0]
+
+See also: HEADING
+</item>
+
+<item name="trace" key="debug,directive">
+TRACE procedure-name
+
+Tells the jLogo interpreter to print a pair of lines each time
+procedure-name is invoked. The first line consists of the procedure's
+name and the actual values of its inputs. The second line is printed
+after the procedure completes. It consists of the procedure's name
+and an output value if one is produced.
+
+See also: THROTTLE, UNTRACE
+</item>
+
+<item name="ctrl-t,turtles" key="commandcenter,turtl,debug">
+Ctrl-t (in CommandCenter)
+
+Prints out the current state of all turtles.
+</item>
+
+<item name="uppercase" key="str,text">
+UPPERCASE word
+
+Outputs a copy of the input word, but with all lowercase letters
+changed to the corresponding uppercase letters.
+
+See also: ASCII, CHAR, LOWERCASE
+</item>
+
+<item name="undo">
+Ctrl-_ or Ctrl-x u (in Emacs editor)
+Ctrl-z (in WinEdit editor)
+
+Reverses previous change to text in the editor.
+Can be used to back out mutiple changes, both
+additions and deletions.
+</item>
+
+<item name="untrace" key="debug,directive">
+UNTRACE procedure-name
+UNTRACE all
+
+Tells the jLogo interpreter to quit tracing procedure-name.
+
+See also: THROTTLE, TRACE
+</item>
+
+<item name="uparrow">
+[UP ARROW]
+
+Moves the cursor up to the previous line.
+</item>
+
+<item name="version" key="directive">
+VERSION
+
+Prints TG's version number along with the version number of
+Java and the current operating system.
+</item>
+
+<item name="wait">
+WAIT number
+
+Execution of the program is suspended for number of milliseconds
+(1/1000 of a second).
+</item>
+
+<item name="who" key="turtl">
+WHO
+
+Outputs the name of the current turtle.
+</item>
+
+<item name="winedit" key="directive,editor">
+Basic editing in TG consists of the commands:
+
+  backspaceKey   copy         cut          deleteKey
+  downArrow      endKey       find         gotoLine
+  homeKey        leftArrow    newFile      openFile
+  paste          rightArrow   save         scrollDn
+  scrollUp       selectAll    undo         upArrow
+
+See also: Emacs
+</item>
+
+<item name="word">
+WORD word word
+
+Outputs a word consisting of its first input concatenated with its
+second input.
+
+Supports a variable number of inputs with surrounding parenthesis,
+e.g., (WORD :promptText "|: | :defaultText)
+</item>
+
+<item name="word?,wordp">
+WORD? thing
+WORDP thing
+
+Outputs true it the input thing is a word (which includes numbers
+and boolean values). Otherwise outputs false, e.g., if thing is
+an array or a list.
+</item>
+
+<item name="writefile">
+Ctrl-x Ctrl-w
+
+Save the sEmacs editor's contents to a file. sEmacs prompts for
+the name of the file.
+
+See also: SAVE (sEmacs editor)
+</item>
+
+<item name="xcor,turtlex" key="turtl">
+TURTLEX
+XCOR
+
+Outputs the turtle's X coordinate.
+
+Example: MAKE "curX XCOR
+</item>
+
+<item name="yank,ctrl-y">
+Ctrl-y
+
+Pastes (yanks) the contents of the temporary text holding area in
+front of the cursor.
+</item>
+
+<item name="ycor,turtley" key="turtl">
+TURTLEY
+YCOR
+
+Outputs the turtle's Y coordinate.
+
+Example: LABEL YCOR
+</item>
