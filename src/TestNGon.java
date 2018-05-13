@@ -8,7 +8,7 @@ public class TestNGon extends NGon
         t.throttle(100); // delay by N milliseconds
         t.right();
 
-        for(int i = 3; i < 10; i++)
+        for(int i = 30; i < 40; i++)
         {
             t.forward(100);
             t.incrementpencolor();
