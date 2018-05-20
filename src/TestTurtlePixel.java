@@ -1,6 +1,4 @@
 import java.awt.Color;
-import java.io.File;
-import java.util.HashMap;
 
 import TurtleGraphics.TGPoint;
 
@@ -13,18 +11,20 @@ public class TestTurtlePixel
         Color[] rainbow = Lib.stringstocolor("RED, ORANGE, YELLOW, GREEN, BLUE, MAGENTA");
         Color[] blackwhite = Lib.stringstocolor("BLACK, WHITE, BLACK, WHITE, BLACK, WHITE");
 
-        HashMap<Character, Color> colormap = TurtlePixel.colormapfromfile(new File("resources/happyface.map"));
-        String happyfacestr = Lib.filetostring(new File("resources/happyface.txt"));
-        Color[][] happyface = TurtlePixel.ASCIItoColor(happyfacestr, colormap);
+        Color[][] happyface = LibPixel.ASCIItoColor("resources/happyface.txt", "resources/happyface.map");
+        Color[][] hello = LibPixel.ASCIItoColor("resources/hello.txt", "resources/hello.map");
 
-        TurtlePixel t = new TurtlePixel();
-        t.throttle(100);
-        int i = 0;
+        TurtlePixel t = new TurtlePixel(5);
+        t.throttle(30);
 
-        t.drawPixel(Color.PINK, new TGPoint(0, (t.scale * i--)));
-        t.drawPixels(rainbow, new TGPoint(0, (t.scale * i--)));
-        t.drawPixels(blackwhite, new TGPoint(0, (t.scale * i--)));
-        t.drawPixels(happyface, new TGPoint(0, (t.scale * i--)));
+        int x = -200;
+        int y = 0;
+
+        t.drawPixel(Color.PINK, new TGPoint(x, (t.scale * (y -= 1))));
+        t.drawPixels(rainbow, new TGPoint(x, (t.scale * (y -= 1))));
+        t.drawPixels(blackwhite, new TGPoint(x, (t.scale * (y -= 1))));
+        t.drawPixels(happyface, new TGPoint(x, (t.scale * (y -= 1))));
+        t.drawPixels(hello, new TGPoint(x, (t.scale * (y -= (happyface[0].length))))); // go down by 1 column...
 
     }
 

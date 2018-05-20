@@ -18,7 +18,7 @@ public final class Lib
 
         return s;
     }
-    
+
     public static String normalize_newlines(String s)
     {
         return normalize_newlines(s, "\n");
@@ -59,6 +59,11 @@ public final class Lib
     {
         double diff = (stop - start);
         return ((Math.random() * diff) + start);
+    }
+
+    public static String filetostring(String s )
+    {
+        return filetostring(new File(s));
     }
 
     public static String filetostring(File f)

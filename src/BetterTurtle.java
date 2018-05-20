@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.util.ArrayList;
 
+import TurtleGraphics.TGPoint;
 import TurtleGraphics.TurtleGraphicsWindow;
 
 /**
@@ -9,6 +10,22 @@ import TurtleGraphics.TurtleGraphicsWindow;
 @SuppressWarnings("serial")
 public class BetterTurtle extends TurtleGraphicsWindow
 {
+
+    public BetterTurtle()
+    {
+        super();
+    }
+
+    public BetterTurtle(int w, int h)
+    {
+        super(w, h);
+    }
+
+    public TGPoint getlocation()
+    {
+        return new TGPoint(getX(), getY());
+    }
+
     /**
      * The number of degrees in a circle.
      */
@@ -53,12 +70,12 @@ public class BetterTurtle extends TurtleGraphicsWindow
     {
         seth(Lib.randrange(0, 360));
     }
-    
+
     public void setpc(Color c)
     {
         setpencolor(c.getRGB());
     }
-    
+
     public void setpencolor(Color c)
     {
         setpc(c);
