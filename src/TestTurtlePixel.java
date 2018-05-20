@@ -1,34 +1,20 @@
 import java.awt.Color;
+import java.io.File;
 import java.util.HashMap;
 
 import TurtleGraphics.TGPoint;
 
 public class TestTurtlePixel
 {
+
     @SuppressWarnings("serial")
     public static void main(String[] args)
     {
-        Color[] rainbow = { Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.MAGENTA, };
-        Color[] blackwhite = { Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE };
+        Color[] rainbow = Lib.stringstocolor("RED, ORANGE, YELLOW, GREEN, BLUE, MAGENTA");
+        Color[] blackwhite = Lib.stringstocolor("BLACK, WHITE, BLACK, WHITE, BLACK, WHITE");
 
-        HashMap<Character, Color> colormap = new HashMap<Character, Color>()
-        {
-            {
-                put('.', Color.PINK);
-                put('#', Color.YELLOW);
-                put('A', Color.GREEN);
-            }
-        };
-        
-        //@formatter:off
-        String happyfacestr = ""
-                + ".....\n"
-                + ".#.#.\n"
-                + "..A..\n"
-                + "#...#\n"
-                + ".###.\n";
-        //@formatter:on
-
+        HashMap<Character, Color> colormap = TurtlePixel.colormapfromfile(new File("resources/happyface.map"));
+        String happyfacestr = Lib.filetostring(new File("resources/happyface.txt"));
         Color[][] happyface = TurtlePixel.ASCIItoColor(happyfacestr, colormap);
 
         TurtlePixel t = new TurtlePixel();
