@@ -1,17 +1,17 @@
 
-public class TestNGon extends NGon
+public class TestTurtleNGon extends TurtleNGon
 {
 
     public static void main(String[] args)
     {
-        TestNGon t = new TestNGon();
+        TestTurtleNGon t = new TestTurtleNGon();
         t.throttle(100); // delay by N milliseconds
         t.right();
 
-        for(int i = 30; i < 40; i++)
+        for(int i = 3; i < 10; i++)
         {
             t.forward(100);
-            t.incrementpencolor();
+            t.randompenhexcolor();
             t.drawNGon(300, i);
         }
 
