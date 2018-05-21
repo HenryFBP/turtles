@@ -1,7 +1,11 @@
+package tests;
 import java.awt.Color;
 import java.util.List;
 
 import TurtleGraphics.TGPoint;
+import lib.Lib;
+import lib.LibPixel;
+import turtles.TurtlePixel;
 
 public class TestTurtlePixel
 {

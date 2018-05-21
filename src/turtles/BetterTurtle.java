@@ -1,8 +1,10 @@
+package turtles;
 import java.awt.Color;
 import java.util.ArrayList;
 
 import TurtleGraphics.TGPoint;
 import TurtleGraphics.TurtleGraphicsWindow;
+import lib.Lib;
 
 /**
  * A Turtle, but better!

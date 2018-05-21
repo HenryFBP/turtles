@@ -1,3 +1,5 @@
+package tests;
+import turtles.TurtleNGon;
 
 @SuppressWarnings("serial")
 public class TestTurtleNGon extends TurtleNGon
