@@ -2,5 +2,6 @@
 .project
 .settings
 .tracecompass
-bin/*
+onenote
+bin
 *.class
