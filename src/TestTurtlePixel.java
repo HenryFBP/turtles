@@ -1,31 +1,35 @@
 import java.awt.Color;
+import java.util.List;
 
 import TurtleGraphics.TGPoint;
 
 public class TestTurtlePixel
 {
-
-    @SuppressWarnings("serial")
     public static void main(String[] args)
     {
-        Color[] rainbow = Lib.stringstocolor("RED, ORANGE, YELLOW, GREEN, BLUE, MAGENTA");
-        Color[] blackwhite = Lib.stringstocolor("BLACK, WHITE, BLACK, WHITE, BLACK, WHITE");
+        List<Color> rainbow = Lib.stringstocolor("RED, ORANGE, YELLOW, GREEN, BLUE, MAGENTA");
+        List<Color> blackwhite = Lib.stringstocolor("BLACK, WHITE, BLACK, WHITE, BLACK, WHITE");
 
-        Color[][] happyface = LibPixel.ASCIItoColor("resources/happyface.txt", "resources/happyface.map");
-        Color[][] hello = LibPixel.ASCIItoColor("resources/hello.txt", "resources/hello.map");
+        //@formatter:off
+        List<List<Color>> happyface =       LibPixel.ASCIItoColor(      "resources/happyface.txt",    "resources/happyface.map");
+        List<List<Color>> hello =           LibPixel.ASCIItoColor(      "resources/hello.txt",        "resources/hello.map");
+        List<List<Color>> happyfacepng =    LibPixel.imageFileToColor(  "resources/happyface.png");
+        List<List<Color>> awwyeah =         LibPixel.imageFileToColor(  "resources/awwyeah.png");
+        //@formatter:on
 
-        TurtlePixel t = new TurtlePixel(5);
-        t.throttle(30);
+        TurtlePixel t = new TurtlePixel(1900, 1000, 3);
+        t.throttle(1);
 
-        int x = -200;
-        int y = 0;
+        int x = -600;
+        int y = 100;
 
         t.drawPixel(Color.PINK, new TGPoint(x, (t.scale * (y -= 1))));
-        t.drawPixels(rainbow, new TGPoint(x, (t.scale * (y -= 1))));
-        t.drawPixels(blackwhite, new TGPoint(x, (t.scale * (y -= 1))));
+        t.drawPixelRow(rainbow, new TGPoint(x, (t.scale * (y -= 1))));
+        t.drawPixelRow(blackwhite, new TGPoint(x, (t.scale * (y -= 1))));
         t.drawPixels(happyface, new TGPoint(x, (t.scale * (y -= 1))));
-        t.drawPixels(hello, new TGPoint(x, (t.scale * (y -= (happyface[0].length))))); // go down by 1 column...
-
+        t.drawPixels(hello, new TGPoint(x, (t.scale * (y -= (happyface.get(0).size()))))); // go down by 1 column...\
+        t.drawPixels(happyfacepng, new TGPoint(x, (t.scale * (y -= hello.get(0).size()))));
+        t.drawPixels(awwyeah, new TGPoint(x, (t.scale * (y -= happyfacepng.get(0).size()))));
     }
 
 }

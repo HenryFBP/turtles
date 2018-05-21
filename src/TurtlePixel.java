@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.List;
 
 import TurtleGraphics.TGPoint;
 
@@ -18,6 +19,12 @@ public class TurtlePixel extends BetterTurtle
         this.scale = scale;
     }
 
+    public TurtlePixel(int width, int height, int scale)
+    {
+        super(width, height);
+        this.scale = scale;
+    }
+
     public void drawPixel(Color c, TGPoint l)
     {
         setxy(l);
@@ -30,7 +37,7 @@ public class TurtlePixel extends BetterTurtle
         penup();
     }
 
-    public void drawPixels(Color[] colors, TGPoint l)
+    public void drawPixelRow(List<Color> colors, TGPoint l)
     {
         setxy(l);
         setpensize(scale);
@@ -46,16 +53,16 @@ public class TurtlePixel extends BetterTurtle
         penup();
     }
 
-    public void drawPixels(Color[][] image, TGPoint l)
+    public void drawPixels(List<List<Color>> image, TGPoint l)
     {
         int r = (int) l.y;
 
-        for(Color[] row : image)
+        for(List<Color> row : image)
         {
-            drawPixels(row, new TGPoint(l.x, r));
+            drawPixelRow(row, new TGPoint(l.x, r));
             r -= scale;
         }
-        
+
         penup();
     }
 

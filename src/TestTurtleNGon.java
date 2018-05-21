@@ -1,7 +1,7 @@
 
+@SuppressWarnings("serial")
 public class TestTurtleNGon extends TurtleNGon
 {
-
     public static void main(String[] args)
     {
         TestTurtleNGon t = new TestTurtleNGon();

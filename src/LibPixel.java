@@ -1,17 +1,87 @@
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import javax.imageio.ImageIO;
 
 public class LibPixel
 {
 
-    public static Color[][] ASCIItoColor(String ascii, HashMap<Character, Color> colorMap)
+    public static List<List<Integer>> imageFileToPixels(File f)
+    {
+        List<List<Integer>> pixels = new ArrayList<>();
+
+        try
+        {
+            BufferedImage bi = ImageIO.read(f);
+            Raster r = bi.getData();
+
+            int x = bi.getWidth();
+            int y = bi.getHeight();
+
+            // System.out.printf("File %s is '%d' by '%d'.\n", f.getName(), x, y);
+
+            for(int i = 0; i < x; i++)
+            {
+                List<Integer> row = new ArrayList<>();
+
+                for(int j = 0; j < y; j++)
+                {
+                    int p = bi.getRGB(i, j);
+                    row.add(p);
+                    System.out.printf("[%d,%d] = %08x ", i, j, p);
+                }
+                System.out.println();
+
+                pixels.add(row);
+
+            }
+        }
+        catch(IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        pixels = Lib.transpose(pixels);
+        
+        return pixels;
+
+    }
+
+    public static List<List<Color>> imageFileToColor(File f)
+    {
+        List<List<Color>> c = new ArrayList<>();
+
+        List<List<Integer>> pixels = imageFileToPixels(f);
+
+        for(List<Integer> row : pixels)
+        {
+            List<Color> crow = new ArrayList<>();
+
+            for(int pixel : row)
+            {
+                Color color = new Color(pixel);
+                crow.add(color);
+            }
+
+            c.add(crow);
+        }
+
+        return c;
+    }
+
+    public static List<List<Color>> ASCIItoColor(String ascii, HashMap<Character, Color> colorMap)
     {
         ascii = Lib.normalize_newlines(ascii);
 
-        ArrayList<ArrayList<Color>> image = new ArrayList<>();
-        ArrayList<Color> row = new ArrayList<>();
+        List<List<Color>> image = new ArrayList<>();
+        List<Color> row = new ArrayList<>();
 
         for(Character c : ascii.toCharArray())
         {
@@ -26,12 +96,11 @@ public class LibPixel
             }
         }
 
-        Color[][] imagec = image.stream().map(u -> u.toArray(new Color[0])).toArray(Color[][]::new); // tl;dr is { ArrayList<ArrayList<Color>> -> Color[][] }
-
-        return imagec;
+        return image;
 
     }
 
+    @SuppressWarnings("serial")
     public static HashMap<Character, Color> colormapfromline(String s)
     {
         // System.out.printf("String '%s' -> ", s);
@@ -68,14 +137,19 @@ public class LibPixel
         return ret;
     }
 
-    public static HashMap<Character, Color> colormapfromfile(String s)
+    public static HashMap<Character, Color> colormapfromfile(String path)
     {
-        return colormapfromfile(new File(s));
+        return colormapfromfile(new File(path));
     }
 
-    public static Color[][] ASCIItoColor(String ascii_location, String color_map_location)
+    public static List<List<Color>> ASCIItoColor(String asciiPath, String colormapPath)
     {
-        return ASCIItoColor(Lib.filetostring(ascii_location), LibPixel.colormapfromfile(color_map_location));
+        return ASCIItoColor(Lib.filetostring(asciiPath), LibPixel.colormapfromfile(colormapPath));
+    }
+
+    public static List<List<Color>> imageFileToColor(String string)
+    {
+        return imageFileToColor(new File(string));
     }
 
 }
