@@ -1,12 +1,12 @@
 package tests;
+
 import turtles.TurtleNGon;
 
-@SuppressWarnings("serial")
-public class TestTurtleNGon extends TurtleNGon
+public class TestTurtleNGon
 {
     public static void main(String[] args)
     {
-        TestTurtleNGon t = new TestTurtleNGon();
+        TurtleNGon t = new TurtleNGon();
         t.throttle(100); // delay by N milliseconds
         t.right();
 
