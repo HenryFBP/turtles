@@ -60,6 +60,19 @@ Yes, yes you can.
 
 # Why turtles?
 
+I wanted to do turtles instead of discussing 'bare' concepts, like loops and
+other programming constructs.
+
+I want to present a way to think about drawing shapes that is completely
+implementation-agnostic.
+
+I feel that giving people the tools to turn little math mini-conjectures and
+just ideas into code instead of *starting with code* is easier for people to
+remember and latch on to.
+
+And remeber, I don't want your knowledge of coding to be a requisite for
+watching these videos, at least not at first.
+
 ## Why not make a program that, like, does your taxes?
 
 - That's boring!
