@@ -26,7 +26,7 @@ public class BetterTurtle extends TurtleGraphicsWindow
 
     public TGPoint getlocation()
     {
-        return new TGPoint(getX(), getY());
+        return new TGPoint(xcor(), ycor());
     }
 
     /**
@@ -102,6 +102,14 @@ public class BetterTurtle extends TurtleGraphicsWindow
     public void left()
     {
         left(DEG_IN_CIRC / 4);
+    }
+
+    /***
+     * Given a point, add that point to my position.
+     */
+    public void offsetxy(TGPoint p)
+    {
+        setxy(Lib.add(getlocation(), p));
     }
 
     public void setpencolor(double c)

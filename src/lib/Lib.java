@@ -1,4 +1,5 @@
 package lib;
+
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,8 +10,27 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import TurtleGraphics.TGPoint;
+
 public final class Lib
 {
+
+    /***
+     * Add two points together
+     */
+    public static TGPoint add(TGPoint a, TGPoint b)
+    {
+        return new TGPoint((a.x + b.x), (a.y + b.y));
+    }
+
+    /***
+     * Multiply two points together.
+     */
+    public static TGPoint mult(TGPoint a, TGPoint b)
+    {
+        return new TGPoint((a.x * b.x), (a.y * b.y));
+    }
+
     /***
      * Replace all newline sequences with one type of newline sequence.
      */
