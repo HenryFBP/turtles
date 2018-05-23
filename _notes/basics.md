@@ -21,13 +21,15 @@ All material (sketches, code, my script) will be linked below.
 
 # What's a turtle?
 
-The shortest description I can come up with is, "A little robot with a pen taped to it that runs around. "
+The shortest description I can come up with is, "A little robot with a pen taped
+to it that runs around."
 
 A [turtle](https://en.wikipedia.org/wiki/Turtle_graphics), or, more
 specifically, 'turtle graphics', refers to a little controllable robot with a
 pen...taped to it that runs around on a 2d grid.
 
-It has a list of attributes, like pen color and (x,y) position, as well as a list of methods that it can perform, like turning and going forward.
+It has a list of attributes, like pen color and (x,y) position, as well as a
+list of methods that it can perform, like turning and going forward.
 
 Attributes:
 - Pen
@@ -37,15 +39,20 @@ Attributes:
   - Position
   - Rotation
 
-...and that's it! Any manipulation of the landscape below the turtle is done by telling the turtle to run around, lift its pen up and down, and change pen colors and thicknesses.
+...and that's it! Any manipulation of the landscape below the turtle is done by
+telling the turtle to run around, lift its pen up and down, and change pen
+colors and thicknesses.
 
 # What's Java?
 
-Aside from being a heavenly breakfast drink from the gods, Java is a programming language.
+Aside from being a heavenly breakfast drink from the gods, Java is a programming
+language.
 
 More simply, it's an abstract way to tell your computer to do stuff.
 
-I won't get info the fancy worded details like "multiple typing" and "static inheritance" because we don't need to know them to tell a reptile to draw shapes.
+I won't get info the fancy worded details like "multiple typing" and "static
+inheritance" because we don't need to know them to tell a reptile to draw
+shapes.
 
 ## Can I drink it?
 
@@ -57,9 +64,12 @@ Yes, yes you can.
 
 - That's boring!
 - I find people learn more from _interactive_ demonstrations
-- When you mess up the taxes program, you don't really get visceral, intuitive feedback about what your error was.
+- When you mess up the taxes program, you don't really get visceral, intuitive 
+  feedback about what your error was.
 
-  When you, for example, make a stroke twice as long as it should be, then your happy face you were trying to draw is stretched out, but it's much easier to see, and quicker to figure out. (assuming it compiles)
+  When you, for example, make a stroke twice as long as it should be, then your
+  happy face you were trying to draw is stretched out, but it's much easier to
+  see, and quicker to figure out. (assuming it compiles)
   
 # Why Java?
 
