@@ -1,5 +1,7 @@
 package tests;
+
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import TurtleGraphics.TGPoint;
@@ -9,6 +11,7 @@ import turtles.TurtlePixel;
 
 public class TestTurtlePixel
 {
+    @SuppressWarnings("serial")
     public static void main(String[] args)
     {
         List<Color> rainbow = Lib.stringstocolor("RED, ORANGE, YELLOW, GREEN, BLUE, MAGENTA");
@@ -22,20 +25,27 @@ public class TestTurtlePixel
         List<List<Color>> ants =            LibPixel.imageFileToColor(  "resources/ants.png");
         //@formatter:on
 
-        TurtlePixel t = new TurtlePixel(1900, 1000, 2);
-        t.throttle(0);
+        List<List<List<Color>>> images = new ArrayList<List<List<Color>>>()
+        {
+            {
+                add(happyface);
+                add(hello);
+                add(happyfacepng);
+                add(awwyeah);
+                add(ants);
+            }
+        };
+
+        TurtlePixel t = new TurtlePixel(1900, 1000, 10);
+        t.throttle(10);
 
         int x = -900;
-        int y = 100;
+        int y = 0;
 
         t.drawPixel(Color.PINK, new TGPoint(x, (t.scale * (y -= 1))));
         t.drawPixelRow(rainbow, new TGPoint(x, (t.scale * (y -= 1))));
         t.drawPixelRow(blackwhite, new TGPoint(x, (t.scale * (y -= 1))));
-        t.drawPixels(happyface, new TGPoint(x, (t.scale * (y -= 1))));
-        t.drawPixels(hello, new TGPoint(x, (t.scale * (y -= (happyface.get(0).size()))))); // go down by 1 column...\
-        t.drawPixels(happyfacepng, new TGPoint(x, (t.scale * (y -= hello.get(0).size()))));
-        t.drawPixels(awwyeah, new TGPoint(x, (t.scale * (y -= happyfacepng.get(0).size()))));
-        t.drawPixels(ants, new TGPoint(x, (t.scale * (y -= ants.get(0).size()))));
+        t.drawImages(images, new TGPoint(x, t.scale * (y -= 1)));
     }
 
 }

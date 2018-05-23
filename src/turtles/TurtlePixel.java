@@ -66,5 +66,16 @@ public class TurtlePixel extends BetterTurtle
 
         penup();
     }
+    
+    public void drawImages(List<List<List<Color>>> images, TGPoint l)
+    {
+        int r = (int) l.y;
+
+        for(List<List<Color>> image : images)
+        {
+            drawPixels(image, new TGPoint(l.x, r));
+            r -= (scale * image.size()); //subtract image's height
+        }
+    }
 
 }
